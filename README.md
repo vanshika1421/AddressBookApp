@@ -26,33 +26,37 @@ branch after completion and testing.
 
 ### UC2 – Validate Contact
 
-- Validate contact details
-- Add custom `InvalidContactException`
+- Add contact validation
 - Validate name, address, city, state, zip, phone number, and email
-- Display clear validation error messages
+- Create `InvalidContactException`
+- Create `ContactValidator`
+- Reject invalid contact data
 
-### UC3 – Add Multiple Contacts
+### UC3 – Add Contacts
 
-- Create an `AddressBook` class
-- Store multiple contacts using a list
-- Add contacts to the address book
+- Create `AddressBook` class
+- Add multiple contacts
 - Display all contacts
-- Add a console menu for address book operations
+- Add console menu for contact management
 
 ### UC4 – Edit Contact
 
-- Find an existing contact using first name and last name
-- Edit contact details
-- Keep existing values when a field is left blank
+- Find a contact using first name and last name
+- Edit existing contact details
+- Allow blank input to retain existing values
 - Validate updated contact details
-- Update the contact if the new details are valid
 
 ### UC5 – Delete Contact
 
-- Find an existing contact using first name and last name
-- Delete the selected contact from the address book
-- Display a message when the contact is not found
-- Display a confirmation message after successful deletion
+- Find a contact using first name and last name
+- Delete an existing contact
+- Display appropriate success or not-found messages
+
+### UC6 – Count Contacts
+
+- Introduce `AddressBookMain`
+- Manage multiple `AddressBook` objects
+- Count contacts across multiple address books using LINQ `Sum`
 
 ## Git Workflow
 
