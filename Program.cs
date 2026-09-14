@@ -29,7 +29,8 @@ namespace AddressBookApp
                 Console.WriteLine("4. Delete Contact");
                 Console.WriteLine("5. Count Contacts");
                 Console.WriteLine("6. Search Contact");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("7. Group Contact by city");
+                Console.WriteLine("8. Exit");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -77,6 +78,10 @@ namespace AddressBookApp
                         break;
 
                     case "7":
+                        addressBookMain.GroupContactsByCity();
+                        break;
+
+                    case "8":
                         running = false;
                         Console.WriteLine("Exiting Address Book...");
                         break;

@@ -34,6 +34,19 @@ namespace AddressBookApp.Services
                 Console.WriteLine("No contacts found.");
                 return;
             }
+        }
+        public void GroupContactsByCity()
+        {
+            var groupedContacts = addressBooks.SelectMany(b => b.Contacts).GroupBy(c=>c.City);
+            foreach(var group in groupedContacts) {
+                {
+                    Console.WriteLine($"City : {group.Key}");
+                    foreach (Contact contact in group)
+                    {
+                        Console.WriteLine(contact);
+                    }
+                    Console.WriteLine();
+                }
 
             foreach (Contact contact in contacts)
             {
