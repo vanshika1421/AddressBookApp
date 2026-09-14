@@ -10,6 +10,14 @@ namespace AddressBookApp
         static void Main(string[] args)
         {
             AddressBook addressBook = new AddressBook();
+            AddressBook addressBook1 = new AddressBook();
+            AddressBook addressBook2 = new AddressBook();
+            AddressBookMain addressBookMain = new AddressBookMain();
+            
+
+            addressBookMain.AddAddressBook(addressBook);
+            addressBookMain.AddAddressBook(addressBook1);
+            addressBookMain.AddAddressBook(addressBook2);
 
             bool running = true;
 
@@ -19,7 +27,8 @@ namespace AddressBookApp
                 Console.WriteLine("2. Display Contacts");
                 Console.WriteLine("3. Edit Contact");
                 Console.WriteLine("4. Delete Contact");
-                Console.WriteLine("5. Exit");
+                Console.WriteLine("5. Count Contacts");
+                Console.WriteLine("6. Exit");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -54,13 +63,15 @@ namespace AddressBookApp
                         addressBook.DeleteContact(deletefirstName, deletelastName);
                         break;
 
+                    
+
                     case "5":
+                        Console.WriteLine($"Total Contacts: {addressBookMain.GetTotalContactCount()}");
+                        break;
+
+                    case "6":
                         running = false;
                         Console.WriteLine("Exiting Address Book...");
-                        break; ;
-
-                    default:
-                        Console.WriteLine("Invalid choice.");
                         break;
                 }
             }
