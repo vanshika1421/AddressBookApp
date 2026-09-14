@@ -15,10 +15,10 @@ namespace AddressBookApp
 
             while (running)
             {
-                Console.WriteLine("\nAddress Book");
                 Console.WriteLine("1. Add Contact");
                 Console.WriteLine("2. Display Contacts");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("3. Edit Contact");
+                Console.WriteLine("4. Exit");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -34,9 +34,19 @@ namespace AddressBookApp
                         break;
 
                     case "3":
+                        Console.Write("Enter First Name of contact to edit: ");
+                        string firstName = Console.ReadLine();
+
+                        Console.Write("Enter Last Name of contact to edit: ");
+                        string lastName = Console.ReadLine();
+
+                        addressBook.EditContact(firstName, lastName);
+                        break;
+
+                    case "4":
                         running = false;
                         Console.WriteLine("Exiting Address Book...");
-                        break;
+                        break; ;
 
                     default:
                         Console.WriteLine("Invalid choice.");
