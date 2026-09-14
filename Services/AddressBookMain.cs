@@ -2,15 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
-
+using System.Linq;
 
 namespace AddressBookApp.Services
 {
     public class AddressBookMain
     {
-
-
         private List<AddressBook> addressBooks = new();
 
         public void AddAddressBook(AddressBook addressBook)
@@ -37,20 +34,15 @@ namespace AddressBookApp.Services
         }
         public void GroupContactsByCity()
         {
-            var groupedContacts = addressBooks.SelectMany(b => b.Contacts).GroupBy(c=>c.City);
-            foreach(var group in groupedContacts) {
-                {
-                    Console.WriteLine($"City : {group.Key}");
-                    foreach (Contact contact in group)
-                    {
-                        Console.WriteLine(contact);
-                    }
-                    Console.WriteLine();
-                }
-
-            foreach (Contact contact in contacts)
+            var groupedContacts = addressBooks.SelectMany(b => b.Contacts).GroupBy(c => c.City);
+            foreach (var group in groupedContacts)
             {
-                Console.WriteLine(contact);
+                Console.WriteLine($"City : {group.Key}");
+                foreach (Contact contact in group)
+                {
+                    Console.WriteLine(contact);
+                }
+                Console.WriteLine();
             }
         }
     }
