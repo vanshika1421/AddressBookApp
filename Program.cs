@@ -1,4 +1,6 @@
-﻿using AddressBookApp.Models;
+﻿using AddressBookApp.Exceptions;
+using AddressBookApp.Models;
+using AddressBookApp.Validation;
 
 namespace AddressBookApp
 {
@@ -14,10 +16,20 @@ namespace AddressBookApp
                 "Haryana",
                 "134003",
                 "9876543210",
-                "vanshika@gmail.com"
+                "vanshikagmail.com"
             );
 
-            Console.WriteLine(contact.ToString());
+           
+            try
+            {
+                ContactValidator.Validate(contact);
+
+                Console.WriteLine(contact.ToString());
+            }
+            catch (InvalidContactException ex)
+            {
+                Console.WriteLine($"Invalid Contact: {ex.Message}");
+            }
         }
     }
 }
