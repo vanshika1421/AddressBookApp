@@ -119,7 +119,7 @@ namespace AddressBookApp
                 ContactValidator.Validate(contact);
                 addressBook.AddContact(contact);
 
-                Console.WriteLine("Contact added successfully.");
+               
             }
             catch (InvalidContactException ex)
             {

@@ -58,6 +58,12 @@ branch after completion and testing.
 - Manage multiple `AddressBook` objects
 - Count contacts across multiple address books using LINQ `Sum`
 
+### UC7 – Prevent Duplicate Contacts
+
+- Prevent duplicate contacts based on first name and last name
+- Check whether a contact already exists before adding
+- Display a duplicate contact message when a duplicate is found
+
 ## Git Workflow
 
 Each Use Case is developed in its own feature branch.

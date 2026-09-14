@@ -14,7 +14,15 @@ namespace AddressBookApp.Services
 
         public void AddContact(Contact contact)
         {
+            Contact contactfound = FindContact(contact.FirstName, contact.LastName);
+            if (contactfound != null)
+            {
+                Console.WriteLine("Duplicate Contact. Contact already exists!");
+                return;
+            }
+
             contacts.Add(contact);
+            Console.WriteLine("Contact added successfully!");
         }
 
         public void PrintAll()
@@ -112,7 +120,7 @@ namespace AddressBookApp.Services
                     return contact;
                 }
             }
-
+             
             return null;
         }
     }
