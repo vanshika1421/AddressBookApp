@@ -64,6 +64,12 @@ branch after completion and testing.
 - Check whether a contact already exists before adding
 - Display a duplicate contact message when a duplicate is found
 
+### UC8 – Search Contacts
+
+- Search contacts by city or state
+- Search across multiple address books
+- Display matching contacts
+
 ## Git Workflow
 
 Each Use Case is developed in its own feature branch.
