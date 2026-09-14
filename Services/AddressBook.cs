@@ -90,7 +90,18 @@ namespace AddressBookApp.Services
                 Console.WriteLine($"Invalid Contact: {ex.Message}");
             }
         }
+        public void DeleteContact(string firstName , string lastName)
+        {
+            Contact contact = FindContact(firstName, lastName);
+            if(contact == null)
+            {
+                Console.WriteLine("Contact Not Found!");
+                return;
+            }
 
+            contacts.Remove(contact);
+            Console.WriteLine("Contact Removed Successfully");
+        }
         private Contact FindContact(string firstName, string lastName)
         {
             foreach (Contact contact in contacts)
