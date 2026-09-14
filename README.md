@@ -70,6 +70,13 @@ branch after completion and testing.
 - Search across multiple address books
 - Display matching contacts
 
+### UC9 – Group Contacts
+
+- Group contacts by city
+- Use LINQ `GroupBy()` to organize contacts
+- Group contacts across multiple address books
+- Display contacts under their respective city
+
 ## Git Workflow
 
 Each Use Case is developed in its own feature branch.
