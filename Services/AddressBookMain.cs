@@ -10,7 +10,7 @@ namespace AddressBookApp.Services
     public class AddressBookMain
     {
 
-        
+
         private List<AddressBook> addressBooks = new();
 
         public void AddAddressBook(AddressBook addressBook)
@@ -22,18 +22,23 @@ namespace AddressBookApp.Services
             return addressBooks.Sum(addressBook => addressBook.Contacts.Count);
         }
 
-        public void SearchByCityOrState(String searchValue)
+        public void SearchByCityOrState(string searchValue)
         {
-            foreach (AddressBook addressBook in addressBooks)
+            var contacts = addressBooks
+                .SelectMany(b => b.Contacts)
+                .Where(c =>
+                    c.City.Equals(searchValue, StringComparison.OrdinalIgnoreCase) ||
+                    c.State.Equals(searchValue, StringComparison.OrdinalIgnoreCase));
+            if (!contacts.Any())
             {
-                foreach(Contact contact  in addressBook.Contacts)
-                {
-                    if(contact.State.Equals(searchValue, StringComparison.OrdinalIgnoreCase) || contact.City.Equals(searchValue, StringComparison.OrdinalIgnoreCase))
-                    {
-                        Console.WriteLine(contact);
-                    }
-                }
+                Console.WriteLine("No contacts found.");
+                return;
             }
+
+            foreach (Contact contact in contacts)
+            {
+                Console.WriteLine(contact);
             }
         }
     }
+}
