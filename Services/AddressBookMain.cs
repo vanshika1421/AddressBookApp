@@ -19,7 +19,7 @@ namespace AddressBookApp.Services
             return addressBooks.Sum(addressBook => addressBook.Contacts.Count);
         }
 
-        public void SearchByCityOrState(string searchValue)
+        public void ViewByCityOrState(string searchValue)
         {
             var contacts = addressBooks
                 .SelectMany(b => b.Contacts)
@@ -45,5 +45,6 @@ namespace AddressBookApp.Services
                 Console.WriteLine();
             }
         }
+       
     }
 }
