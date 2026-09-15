@@ -2,6 +2,7 @@
 using AddressBookApp.Models;
 using AddressBookApp.Services;
 using AddressBookApp.Validation;
+using System.Xml.Linq;
 
 namespace AddressBookApp
 {
@@ -33,14 +34,17 @@ namespace AddressBookApp
                 Console.WriteLine("7. Group Contact by city");
                 Console.WriteLine("8. Count Contact By City or State");
                 Console.WriteLine("9. Sort Contacts by Name");
-                Console.WriteLine("10. Exit");
+                Console.WriteLine("10.Sort Contacts by City");
+                Console.WriteLine("11.Sort Contacts by State");
+                Console.WriteLine("12.Sort Contacts by Zip");
+                Console.WriteLine("13. Exit");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
 
                 switch (choice)
                 {
-                    
+
                     case "1":
                         Console.Write("First Name: ");
                         string firstName = Console.ReadLine();
@@ -177,15 +181,46 @@ namespace AddressBookApp
                         break;
 
                     case "10":
+                        if (addressBook.Contacts.Count == 0)
+                        {
+                            Console.WriteLine("No contacts available.");
+                        }
+                        else
+                        {
+                            addressBook.SortByCity();
+                        }
+                        break;
+
+                    case "11":
+                        if (addressBook.Contacts.Count == 0)
+                        {
+                            Console.WriteLine("No contacts available.");
+                        }
+                        else
+                        {
+                            addressBook.SortByState();
+                        }
+                        break;
+
+                    case "12":
+                        if (addressBook.Contacts.Count == 0)
+                        {
+                            Console.WriteLine("No contacts available.");
+                        }
+                        else
+                        {
+                            addressBook.SortByZip();
+                        }
+                        break;
+
+                    case "13":
                         running = false;
                         Console.WriteLine("Exiting Address Book...");
                         break;
-
-                    
                 }
-            }
 
-            
+
+            }
         }
     }
 }
