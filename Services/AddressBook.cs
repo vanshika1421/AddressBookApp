@@ -98,10 +98,10 @@ namespace AddressBookApp.Services
                 Console.WriteLine($"Invalid Contact: {ex.Message}");
             }
         }
-        public void DeleteContact(string firstName , string lastName)
+        public void DeleteContact(string firstName, string lastName)
         {
             Contact contact = FindContact(firstName, lastName);
-            if(contact == null)
+            if (contact == null)
             {
                 Console.WriteLine("Contact Not Found!");
                 return;
@@ -120,8 +120,39 @@ namespace AddressBookApp.Services
                     return contact;
                 }
             }
-             
+
             return null;
         }
+
+
+
+        public void GetCountByCityOrState()
+        {
+            var countByCity = contacts
+                .GroupBy(c => c.City, StringComparer.OrdinalIgnoreCase)
+                .Select(group => new
+                {
+                    City = group.Key,
+                    Count = group.Count()
+                });
+
+            Console.WriteLine(
+                "By City: " +
+                string.Join(", ", countByCity.Select(c => $"{c.City} = {c.Count}"))
+            );
+
+            var countByState = contacts
+                .GroupBy(c => c.State, StringComparer.OrdinalIgnoreCase)
+                .Select(group => new
+                {
+                    State = group.Key,
+                    Count = group.Count()
+                });
+
+            Console.WriteLine(
+                "By State: " +
+                string.Join(", ", countByState.Select(s => $"{s.State} = {s.Count}"))
+            );
+        }
     }
-}
+    }
