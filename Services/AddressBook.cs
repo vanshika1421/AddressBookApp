@@ -154,5 +154,15 @@ namespace AddressBookApp.Services
                 string.Join(", ", countByState.Select(s => $"{s.State} = {s.Count}"))
             );
         }
+
+        public void SortByName()
+        {
+            var sortedContacts = contacts.OrderBy(c => c.FirstName).ThenBy(c => c.LastName);
+
+            foreach (Contact contact in sortedContacts)
+            {
+                Console.WriteLine(contact);
+            }
+        }
     }
     }

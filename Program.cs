@@ -32,7 +32,8 @@ namespace AddressBookApp
                 Console.WriteLine("6. Search Contact");
                 Console.WriteLine("7. Group Contact by city");
                 Console.WriteLine("8. Count Contact By City or State");
-                Console.WriteLine("9. Exit");
+                Console.WriteLine("9. Sort Contacts by Name");
+                Console.WriteLine("10. Exit");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -164,11 +165,23 @@ namespace AddressBookApp
                             addressBook.GetCountByCityOrState();
                         }
                         break;
-
                     case "9":
+                        if (addressBook.Contacts.Count == 0)
+                        {
+                            Console.WriteLine("No contacts available.");
+                        }
+                        else
+                        {
+                            addressBook.SortByName();
+                        }
+                        break;
+
+                    case "10":
                         running = false;
                         Console.WriteLine("Exiting Address Book...");
                         break;
+
+                    
                 }
             }
 
