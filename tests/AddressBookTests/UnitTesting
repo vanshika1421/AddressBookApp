@@ -1,0 +1,139 @@
+using AddressBookApp.Exceptions;
+using AddressBookApp.Models;
+using AddressBookApp.Services;
+using AddressBookApp.Validation;
+using NUnit.Framework;
+
+namespace AddressBookApp.Tests
+{
+    [TestFixture]
+    public class Test
+    {
+        private AddressBook addressBook;
+
+        [SetUp]
+        public void Setup()
+        {
+            addressBook = new AddressBook();
+        }
+
+        private Contact CreateContact(
+            string firstName = "Vanshika",
+            string lastName = "Chhabra")
+        {
+            return new Contact(
+                firstName,
+                lastName,
+                "12 MG Road",
+                "Pune",
+                "Maharashtra",
+                "411001",
+                "9876543210",
+                "vanshika@gmail.com");
+        }
+
+
+        [Test]
+        public void AddContact_ShouldAddContact()
+        {
+            Contact contact = CreateContact();
+
+            addressBook.AddContact(contact);
+
+            Assert.That(addressBook.Contacts.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void AddContact_ShouldNotAddDuplicateContact()
+        {
+            Contact contact1 = CreateContact();
+            Contact contact2 = CreateContact();
+
+            addressBook.AddContact(contact1);
+            addressBook.AddContact(contact2);
+
+            Assert.That(addressBook.Contacts.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Contact_ToString_ShouldContainContactName()
+        {
+            Contact contact = CreateContact();
+
+            string result = contact.ToString();
+
+            Assert.That(result, Does.Contain("Vanshika"));
+            Assert.That(result, Does.Contain("Chhabra"));
+        }
+
+        [Test]
+        public void DeleteContact_ShouldRemoveContact()
+        {
+            Contact contact = CreateContact();
+
+            addressBook.AddContact(contact);
+            addressBook.DeleteContact("Vanshika", "Chhabra");
+
+            Assert.That(addressBook.Contacts.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void DeleteContact_ShouldNotFail_WhenAddressBookIsEmpty()
+        {
+            Assert.DoesNotThrow(() =>
+                addressBook.DeleteContact("Rahul", "Sharma"));
+        }
+
+        [Test]
+        public void AddContact_ShouldRejectDuplicate()
+        {
+            Contact contact1 = CreateContact();
+            Contact contact2 = CreateContact();
+
+            addressBook.AddContact(contact1);
+            addressBook.AddContact(contact2);
+
+            Assert.That(addressBook.Contacts.Count, Is.Not.EqualTo(2));
+        }
+        [Test]
+        public void Validate_ShouldThrowException_WhenFirstNameIsInvalid()
+        {
+            Contact contact = CreateContact("va", "Chhabra");
+
+            Assert.Throws<InvalidContactException>(() =>
+                ContactValidator.Validate(contact));
+        }
+        [Test]
+        public void Validate_ShouldThrowException_WhenPhoneIsInvalid()
+        {
+            Contact contact = new Contact(
+                "Vanshika",
+                "Chhabra",
+                "12 MG Road",
+                "Ambala",
+                "Haryana",
+                "134003",
+                "98765",
+                "vanshika@gmail.com");
+
+            Assert.Throws<InvalidContactException>(() =>
+                ContactValidator.Validate(contact));
+        }
+        [Test]
+        public void Validate_ShouldThrowException_WhenEmailIsInvalid()
+        {
+            Contact contact = new Contact(
+                "Vanshika",
+                "Chhabra",
+                "12 MG Road",
+                "Pune",
+                "Maharashtra",
+                "411001",
+                "9876543210",
+                "invalid-email");
+
+            Assert.Throws<InvalidContactException>(() =>
+                ContactValidator.Validate(contact));
+        }
+    }
+}
