@@ -31,6 +31,14 @@ namespace AddressBookApp.Services
                 Console.WriteLine("No contacts found.");
                 return;
             }
+            else
+            {
+                foreach (Contact contact in contacts)
+                {
+                    Console.WriteLine(contact);
+                }
+            }
+
         }
         public void GroupContactsByCity()
         {

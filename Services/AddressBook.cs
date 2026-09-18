@@ -177,8 +177,7 @@ namespace AddressBookApp.Services
 
         public void SortByState()
         {
-            var sortedContacts = contacts
-                .OrderBy(c => c.State);
+            var sortedContacts = contacts.OrderBy(c => c.State);
 
             foreach (Contact contact in sortedContacts)
             {
